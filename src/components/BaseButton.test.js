@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/vue';
+
 import BaseButton from './BaseButton.vue';
 
 describe('BaseButton: ', () => {
@@ -13,7 +14,7 @@ describe('BaseButton: ', () => {
 
     render(BaseButton, options);
 
-    screen.debug();
+    // screen.debug();
     screen.getByText(text);
   });
 });

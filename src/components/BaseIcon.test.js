@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/vue';
+
 import BaseIcon from './BaseIcon.vue';
 
 import icons from '../icons';
@@ -21,9 +22,9 @@ describe('BaseIcon: ', () => {
     icon = Object.keys(icons)[0];
   });
 
-  afterEach(() => {
-    screen.debug();
-  });
+  // afterEach(() => {
+  //   screen.debug();
+  // });
 
   test('renders base icon', () => {
     renderIcon(icon);
