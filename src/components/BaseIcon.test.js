@@ -7,6 +7,10 @@ import icons from '../icons';
 describe('BaseIcon: ', () => {
   let icon;
 
+  beforeEach(() => {
+    icon = Object.keys(icons)[0];
+  });
+
   function renderIcon(name, classes = null) {
     const options = {
       props: {
@@ -18,15 +22,7 @@ describe('BaseIcon: ', () => {
     return render(BaseIcon, options);
   }
 
-  beforeEach(() => {
-    icon = Object.keys(icons)[0];
-  });
-
-  // afterEach(() => {
-  //   screen.debug();
-  // });
-
-  test('renders base icon', () => {
+  test('renders', () => {
     renderIcon(icon);
     expect(screen.getByTestId('base-icon').innerHTML).toBeTruthy();
   });

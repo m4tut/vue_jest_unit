@@ -5,9 +5,11 @@ import BaseModal from './BaseModal.vue';
 import icons from '../icons';
 
 describe('BaseModal: ', () => {
-  // afterEach(() => {
-  //   screen.debug();
-  // });
+  let body;
+
+  beforeEach(() => {
+    body = 'This is modal body';
+  });
 
   function renderBaseModal(body = '', footer = '', withCloseButton = false) {
     const options = {
@@ -27,8 +29,7 @@ describe('BaseModal: ', () => {
     return waitForElementToBeRemoved([screen.queryByText(body), screen.queryByTestId('base-modal-overlay')]);
   }
 
-  test('renders base modal with body and footer', () => {
-    const body = 'This is modal body';
+  test('renders with body and footer', () => {
     const footer = 'This is modal footer';
     renderBaseModal(body, footer);
 
@@ -36,20 +37,19 @@ describe('BaseModal: ', () => {
     screen.getByText(footer);
   });
 
-  test('renders base modal with close button', () => {
+  test('renders with close button', () => {
     renderBaseModal('', '', true);
 
     expect(screen.getByTestId('base-icon').innerHTML).toBe(icons['x']);
   });
 
-  test('renders base modal without close button', () => {
+  test('renders without close button', () => {
     renderBaseModal('', '', false);
 
     expect(screen.queryByTestId('base-icon')).toBeNull();
   });
 
-  test('close base modal when clicking close button', () => {
-    const body = 'This is modal body';
+  test('close when clicking close button', () => {
     renderBaseModal(body, '', true);
 
     fireEvent.click(screen.getByTestId('base-modal-button-close'));
@@ -57,8 +57,7 @@ describe('BaseModal: ', () => {
     return assertModalClosed(body);
   });
 
-  test('close base modal when clicking overlay', () => {
-    const body = 'This is modal body';
+  test('close when clicking overlay', () => {
     renderBaseModal(body);
 
     fireEvent.click(screen.getByTestId('base-modal-overlay'));
@@ -66,8 +65,7 @@ describe('BaseModal: ', () => {
     return assertModalClosed(body);
   });
 
-  test('close base modal when clicking cancel button in the footer', () => {
-    const body = 'This is modal body';
+  test('close when clicking cancel button in the footer', () => {
     const footer = `
       <template #footer="{ close }">
         <button @click="close">Cancel</button>
@@ -80,8 +78,7 @@ describe('BaseModal: ', () => {
     return assertModalClosed(body);
   });
 
-  test('close base modal when pressing esc key', () => {
-    const body = 'This is modal body';
+  test('close when pressing esc key', () => {
     renderBaseModal(body);
 
     fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Esc' });

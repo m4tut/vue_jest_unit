@@ -3,11 +3,7 @@ import { render, screen } from '@testing-library/vue';
 import BaseCheckbox from './BaseCheckbox.vue';
 
 describe('BaseCheckbox: ', () => {
-  // afterEach(() => {
-  //   screen.debug();
-  // });
-
-  test('renders checked base checkbox with label', () => {
+  test('renders checked with label', () => {
     const text = 'Test component BaseCheckbox';
     const value = 1;
 
@@ -29,7 +25,7 @@ describe('BaseCheckbox: ', () => {
     expect(checkbox.checked).toBe(true);
   });
 
-  test('renders unchecked base checkbox', () => {
+  test('renders unchecked', () => {
     render(BaseCheckbox);
 
     const checkbox = screen.getByRole('checkbox');
