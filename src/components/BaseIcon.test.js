@@ -15,7 +15,7 @@ describe('BaseIcon: ', () => {
       },
     };
 
-    render(BaseIcon, options);
+    return render(BaseIcon, options);
   }
 
   beforeEach(() => {
