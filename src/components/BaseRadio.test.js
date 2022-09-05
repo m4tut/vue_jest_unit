@@ -26,17 +26,15 @@ describe('BaseRadio: ', () => {
   }
 
   test('renders checked with label', () => {
-    const isChecked = true;
-    renderRadio(label, value, isChecked);
+    renderRadio(label, value, true);
 
-    expect(screen.getByLabelText(label).checked).toBe(isChecked);
+    expect(screen.getByLabelText(label)).toBeChecked();
   });
 
   test('renders unchecked with label', () => {
-    const isChecked = false;
-    renderRadio(label, value, isChecked);
+    renderRadio(label, value, false);
 
-    expect(screen.getByLabelText(label).checked).toBe(isChecked);
+    expect(screen.getByLabelText(label)).not.toBeChecked();
   });
 
   test('renders with value', () => {

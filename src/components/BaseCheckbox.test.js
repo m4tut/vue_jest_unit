@@ -20,16 +20,12 @@ describe('BaseCheckbox: ', () => {
 
     render(BaseCheckbox, options);
 
-    const checkbox = screen.getByLabelText(text);
-
-    expect(checkbox.checked).toBe(true);
+    expect(screen.getByLabelText(text)).toBeChecked();
   });
 
   test('renders unchecked', () => {
     render(BaseCheckbox);
 
-    const checkbox = screen.getByRole('checkbox');
-
-    expect(checkbox.checked).toBe(false);
+    expect(screen.getByRole('checkbox')).not.toBeChecked();
   });
 });

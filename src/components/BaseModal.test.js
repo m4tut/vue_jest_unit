@@ -40,13 +40,13 @@ describe('BaseModal: ', () => {
   test('renders with close button', () => {
     renderBaseModal('', '', true);
 
-    expect(screen.getByTestId('base-icon').innerHTML).toBe(icons['x']);
+    expect(screen.getByTestId('base-icon')).toContainHTML(icons['x']);
   });
 
   test('renders without close button', () => {
     renderBaseModal('', '', false);
 
-    expect(screen.queryByTestId('base-icon')).toBeNull();
+    expect(screen.queryByTestId('base-icon')).not.toBeInTheDocument();
   });
 
   test('close when clicking close button', () => {

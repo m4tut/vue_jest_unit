@@ -24,23 +24,26 @@ describe('BaseIcon: ', () => {
 
   test('renders', () => {
     renderIcon(icon);
-    expect(screen.getByTestId('base-icon').innerHTML).toBeTruthy();
+
+    expect(screen.getByTestId('base-icon')).not.toBeEmptyDOMElement();
   });
 
   test('renders non-existent icon', () => {
     renderIcon('nonExistentIcon');
-    expect(screen.getByTestId('base-icon').innerHTML).toBeFalsy();
+
+    expect(screen.getByTestId('base-icon')).toBeEmptyDOMElement();
   });
 
   test('renders icons with default class', () => {
     renderIcon(icon);
-    const classes = screen.getByTestId('base-icon').getAttribute('class');
-    expect(classes).toBe('w-6 h-6');
+
+    expect(screen.getByTestId('base-icon')).toHaveClass('w-6 h-6');
   });
 
   test('renders icons with custom class', () => {
     const customClasses = 'custom class test';
     renderIcon(icon, customClasses);
-    expect(screen.getByTestId('base-icon').getAttribute('class')).toBe(customClasses);
+
+    expect(screen.getByTestId('base-icon')).toHaveClass(customClasses);
   });
 });

@@ -26,17 +26,17 @@ describe('TheSearchPredictionsList: ', () => {
     renderPredictions();
 
     predictions.forEach(prediction => {
-      expect(screen.getByLabelText(prediction).checked).toBe(false);
+      expect(screen.getByLabelText(prediction)).not.toBeChecked();
     });
   });
 
   test('shows specified search predictions checked', () => {
     renderPredictions(checkedPredictions);
 
-    expect(screen.getByLabelText(predictions[0]).checked).toBe(false);
+    expect(screen.getByLabelText(predictions[0])).not.toBeChecked();
 
     checkedPredictions.forEach(checkedPrediction => {
-      expect(screen.getByLabelText(checkedPrediction).checked).toBe(true);
+      expect(screen.getByLabelText(checkedPrediction)).toBeChecked();
     });
   });
 });
