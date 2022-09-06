@@ -1,14 +1,16 @@
-import { render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/vue';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 
 import BaseModal from './BaseModal.vue';
 
 import icons from '../icons';
 
 describe('BaseModal: ', () => {
-  let body;
+  let body, user;
 
   beforeEach(() => {
     body = 'This is modal body';
+    user = userEvent.setup();
   });
 
   function renderBaseModal(body = '', footer = '', withCloseButton = false) {
@@ -52,7 +54,7 @@ describe('BaseModal: ', () => {
   test('close when clicking close button', () => {
     renderBaseModal(body, '', true);
 
-    fireEvent.click(screen.getByTestId('base-modal-button-close'));
+    user.click(screen.getByTestId('base-modal-button-close'));
 
     return assertModalClosed(body);
   });
@@ -60,7 +62,7 @@ describe('BaseModal: ', () => {
   test('close when clicking overlay', () => {
     renderBaseModal(body);
 
-    fireEvent.click(screen.getByTestId('base-modal-overlay'));
+    user.click(screen.getByTestId('base-modal-overlay'));
 
     return assertModalClosed(body);
   });
@@ -73,7 +75,7 @@ describe('BaseModal: ', () => {
     `;
     renderBaseModal(body, footer);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    user.click(screen.getByRole('button', { name: 'Cancel' }));
 
     return assertModalClosed(body);
   });
@@ -81,7 +83,8 @@ describe('BaseModal: ', () => {
   test('close when pressing esc key', () => {
     renderBaseModal(body);
 
-    fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Esc' });
+    screen.getByRole('dialog').focus();
+    user.keyboard('{Escape}');
 
     return assertModalClosed(body);
   });
