@@ -11,6 +11,6 @@ describe('BaseTextareaCounter: ', () => {
     };
     const { html } = render(BaseTextareaCounter, options);
 
-    expect(html()).toMatchSnapshot();
+    expect(html()).toMatchInlineSnapshot(`"<div class=\\"absolute bottom-2 right-2 text-xs text-gray-600 peer-focus:text-black\\">0 / 100</div>"`);
   });
 });

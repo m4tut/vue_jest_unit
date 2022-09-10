@@ -6,6 +6,6 @@ describe('BaseModalOverlay: ', () => {
   test('renders', () => {
     const { html } = render(BaseModalOverlay);
 
-    expect(html()).toMatchSnapshot();
+    expect(html()).toMatchInlineSnapshot(`"<div class=\\"fixed inset-0 bg-black bg-opacity-80\\" data-testid=\\"base-modal-overlay\\"></div>"`);
   });
 });
